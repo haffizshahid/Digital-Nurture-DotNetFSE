@@ -1,0 +1,76 @@
+.course-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border-color);
+  border-radius: 10px;
+  padding: 1.25rem;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.course-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.3);
+}
+
+/* Hands-On 3 Step 29: CSS classes for ngClass */
+.card--enrolled {
+  background: linear-gradient(135deg, rgba(30, 41, 59, 0.9), rgba(79, 70, 229, 0.15));
+  border-color: var(--primary-color) !important;
+}
+
+.card--full {
+  box-shadow: inset 0 0 0 1px rgba(6, 182, 212, 0.3);
+}
+
+.expanded {
+  min-height: 240px;
+}
+
+.card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.course-code {
+  font-weight: 700;
+  font-size: 0.85rem;
+  color: var(--secondary-color);
+  background: rgba(6, 182, 212, 0.1);
+  padding: 0.2rem 0.5rem;
+  border-radius: 4px;
+}
+
+.course-title {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: var(--text-main);
+}
+
+.course-credits {
+  color: var(--text-muted);
+  font-size: 0.9rem;
+}
+
+.expanded-details {
+  background: rgba(15, 23, 42, 0.5);
+  padding: 0.75rem;
+  border-radius: 6px;
+  font-size: 0.85rem;
+  color: var(--text-muted);
+}
+
+.card-actions {
+  display: flex;
+  gap: 0.5rem;
+  margin-top: auto;
+  padding-top: 0.5rem;
+}
+
+.btn-sm {
+  padding: 0.35rem 0.75rem;
+  font-size: 0.85rem;
+  flex: 1;
+}

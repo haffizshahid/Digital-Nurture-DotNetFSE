@@ -1,0 +1,34 @@
+========================================================================
+DIGITAL NURTURE 5.0 - ANGULAR (v20.0) HANDS-ON 1: FILE & CONFIGURATION EXPLANATIONS
+========================================================================
+
+1. angular.json:
+   Workspace-level configuration file that defines project structure, build targets, configurations (development/production), styles, assets, and CLI tool settings.
+
+2. tsconfig.json:
+   Root TypeScript compiler configuration file defining base compiler options, target JS version, module resolution, and strict type-checking flags for the entire workspace.
+
+3. tsconfig.app.json:
+   Application-specific TypeScript configuration extending tsconfig.json, specifying files included during Angular application compilation and excluding test spec files.
+
+4. package.json:
+   Project manifest file listing dependencies, devDependencies, metadata (name, version), and executable npm scripts (start, build, test, watch).
+
+5. src/main.ts:
+   Application entry point that bootstraps either the AppModule or the root AppComponent using Angular's platform browser bootstrap API.
+
+6. src/app/app.module.ts (or app.config.ts):
+   Application configuration file registering root providers, router configurations, HTTP client, NgRx store, and application-wide modules/interceptors.
+
+7. src/app/app.component.ts:
+   The root component of the Angular application that hosts top-level navigation, layout structure, global notification spinners, and the router-outlet.
+
+8. src/index.html:
+   The single main HTML document served to the browser containing the <app-root> selector where Angular dynamically injects rendered component views.
+
+------------------------------------------------------------------------
+BUDGETS CONFIGURATION IN angular.json:
+------------------------------------------------------------------------
+Under architect > build > configurations > production > budgets:
+- maximumWarning (e.g., 500kB): Triggers a build-time warning when compiled output bundle size exceeds this threshold.
+- maximumError (e.g., 1MB): Fails the build process if compiled output bundle size exceeds this maximum allowable limit, ensuring bundle sizes remain optimized for production delivery.

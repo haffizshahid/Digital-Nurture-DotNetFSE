@@ -1,0 +1,32 @@
+<div class="profile-container container">
+  <div class="profile-card">
+    <div class="avatar-circle">👨‍🎓</div>
+    <div class="profile-info">
+      <h2>{{ studentName }}</h2>
+      <p class="email">{{ studentEmail }}</p>
+      <span class="badge badge-passed">AuthGuard Protected Profile</span>
+    </div>
+  </div>
+
+  <!-- Hands-On 6 Step 66: Display list of enrolled courses -->
+  <div class="enrolled-section">
+    <h3>My Enrolled Courses ({{ enrolledCourses.length }})</h3>
+
+    <div *ngIf="enrolledCourses.length > 0; else noEnrolled" class="enrolled-list">
+      <div *ngFor="let course of enrolledCourses" class="enrolled-item">
+        <div>
+          <h4>{{ course.name }} ({{ course.code }})</h4>
+          <p>Credits: {{ course.credits | creditLabel }} | Status: {{ course.gradeStatus }}</p>
+        </div>
+        <button (click)="unenroll(course.id)" class="btn btn-danger btn-sm">Unenroll</button>
+      </div>
+    </div>
+
+    <ng-template #noEnrolled>
+      <div class="empty-state">
+        <p>You have not enrolled in any courses yet.</p>
+        <a routerLink="/courses" class="btn btn-primary" style="margin-top: 1rem;">Browse Courses</a>
+      </div>
+    </ng-template>
+  </div>
+</div>

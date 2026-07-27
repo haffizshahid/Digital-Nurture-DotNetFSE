@@ -1,0 +1,56 @@
+<div class="course-list-container container">
+  <div class="list-header">
+    <div>
+      <h2>Course Directory</h2>
+      <p class="subtitle">Browse available college courses and enroll instantly</p>
+    </div>
+
+    <div class="filter-box">
+      <input 
+        type="text" 
+        [value]="searchTerm" 
+        (input)="onSearchChange($event)"
+        placeholder="Filter courses..."
+        class="search-input"
+      />
+    </div>
+  </div>
+
+  <!-- Step 25: *ngIf displaying loading message when isLoading is true -->
+  <div *ngIf="isLoading || (ngrxLoading$ | async)" class="loading-box">
+    <div class="spinner-small"></div>
+    <p>Loading courses...</p>
+  </div>
+
+  <div *ngIf="ngrxError$ | async as error" class="error-banner">
+    {{ error }}
+  </div>
+
+  <!-- Step 28: *ngIf with else block #noCourses -->
+  <ng-container *ngIf="!(isLoading || (ngrxLoading$ | async))">
+    <div *ngIf="(courses$ | async) as courses">
+      <div *ngIf="courses.length > 0; else noCourses" class="courses-grid">
+        <!-- Step 26: *ngFor with index and trackBy -->
+        <app-course-card 
+          *ngFor="let course of courses; let i = index; trackBy: trackByCourseId"
+          [course]="course"
+          [isEnrolled]="((enrolledIds$ | async) || []).includes(course.id)"
+          (enrollRequested)="onEnroll($event)"
+        ></app-course-card>
+      </div>
+    </div>
+  </ng-container>
+
+  <!-- Step 28: ng-template #noCourses -->
+  <ng-template #noCourses>
+    <div class="empty-state">
+      <span class="empty-icon">📂</span>
+      <p>No courses available.</p>
+    </div>
+  </ng-template>
+
+  <!-- Step 24: Display selectedCourseId below the list -->
+  <div *ngIf="selectedCourseId" class="selected-info">
+    <p>Selected course ID: <strong>{{ selectedCourseId }}</strong></p>
+  </div>
+</div>
