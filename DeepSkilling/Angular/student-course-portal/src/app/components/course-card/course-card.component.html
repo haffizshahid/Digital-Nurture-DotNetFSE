@@ -1,0 +1,39 @@
+<!-- Hands-On 3 Step 34 & 37: Configurable appHighlight directive applied -->
+<!-- Hands-On 3 Step 29 & 32: [ngClass]="cardClasses" getter binding -->
+<!-- Hands-On 3 Step 30: [ngStyle]="borderStyle" dynamic left border -->
+<div class="course-card" [ngClass]="cardClasses" [ngStyle]="borderStyle" appHighlight="rgba(254, 240, 138, 0.1)">
+  <div class="card-header">
+    <span class="course-code">{{ course?.code }}</span>
+    
+    <!-- Hands-On 3 Step 27: *ngSwitch badge for gradeStatus -->
+    <ng-container [ngSwitch]="course?.gradeStatus">
+      <span *ngSwitchCase="'passed'" class="badge badge-passed">Passed</span>
+      <span *ngSwitchCase="'failed'" class="badge badge-failed">Failed</span>
+      <span *ngSwitchDefault class="badge badge-pending">Pending</span>
+    </ng-container>
+  </div>
+
+  <h3 class="course-title">{{ course?.name }}</h3>
+
+  <!-- Hands-On 3 Step 36: Custom pipe {{ course.credits | creditLabel }} -->
+  <p class="course-credits">Credits: <strong>{{ course?.credits | creditLabel }}</strong></p>
+
+  <div *ngIf="isExpanded" class="expanded-details">
+    <p>Course ID: {{ course?.id }}</p>
+    <p>Department: Computer Science & Engineering</p>
+    <p>Status: Active Listing</p>
+  </div>
+
+  <div class="card-actions">
+    <a [routerLink]="['/courses', course?.id]" class="btn btn-secondary btn-sm">Details</a>
+    
+    <button (click)="toggleExpand()" class="btn btn-secondary btn-sm">
+      {{ isExpanded ? 'Hide Details' : 'Show Details' }}
+    </button>
+
+    <!-- Hands-On 2 Step 21 & Hands-On 6 Step 65: Enroll button and event emission -->
+    <button (click)="onEnrollClick()" class="btn btn-primary btn-sm">
+      {{ (isEnrolled || (course && course.id && isEnrolled)) ? 'Unenroll' : 'Enroll' }}
+    </button>
+  </div>
+</div>

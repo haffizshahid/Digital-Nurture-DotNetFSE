@@ -1,0 +1,36 @@
+<div class="course-detail-container container">
+  <a routerLink="/courses" class="back-link">← Back to Course Directory</a>
+
+  <div *ngIf="course; else notFound" class="detail-card">
+    <div class="header-row">
+      <span class="code-badge">{{ course.code }}</span>
+      <span class="badge" [ngClass]="'badge-' + course.gradeStatus">{{ course.gradeStatus | titlecase }}</span>
+    </div>
+
+    <h1>{{ course.name }}</h1>
+    <p class="credits-info">Credits: <strong>{{ course.credits | creditLabel }}</strong></p>
+
+    <div class="description-block">
+      <h3>Course Overview</h3>
+      <p>
+        This course covers comprehensive theoretical frameworks, practical implementations, and industry standard design patterns.
+      </p>
+    </div>
+
+    <!-- Hands-On 8 Step 87: switchMap loaded student list -->
+    <div class="students-section">
+      <h3>Currently Enrolled Students (Loaded via switchMap)</h3>
+      <ul *ngIf="(enrolledStudents$ | async) as students" class="student-list">
+        <li *ngFor="let student of students">
+          <strong>{{ student.name }}</strong> ({{ student.email }})
+        </li>
+      </ul>
+    </div>
+  </div>
+
+  <ng-template #notFound>
+    <div class="empty-state">
+      <p>Course with ID {{ courseId }} not found.</p>
+    </div>
+  </ng-template>
+</div>

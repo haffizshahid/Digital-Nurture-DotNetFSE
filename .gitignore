@@ -1,0 +1,34 @@
+# Dependencies
+node_modules/
+/.pnp
+.pnp.js
+
+# Testing
+/coverage/
+
+# Production / Build output
+/dist/
+/out-tsc/
+
+# Angular cache
+/.angular/
+
+# IDE / Editor files
+.vscode/*
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+.idea/
+*.suo
+*.user
+*.userosv
+*.sln.docstates
+
+# Miscellaneous
+.DS_Store
+Thumbs.db
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
